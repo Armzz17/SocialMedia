@@ -7,14 +7,13 @@ import { useState } from "react";
 
 const Post = ({Posts}) => {
 
-    const [like, setLike] = useState(Posts.likes+1)
-    const [islike, setIsLike] = useState(false)
+    const [like, setLike] = useState(Posts.likes)
+    const [isLike, setIsLike] = useState(false)
 
     const likeHandler = () =>{
-        console.log('clicked')
-        setLike( like + 1)
         
-        console.log( Posts.likes);
+        setLike(isLike ? like - 1 : like + 1)
+        setIsLike(!isLike)
     }
   return (
     <div className="post">
@@ -45,7 +44,7 @@ const Post = ({Posts}) => {
                     < RecommendIcon onClick= {likeHandler} className="likeIcon" />
                     <FavoriteIcon onClick= {likeHandler} className="heartIcon" />
                        
-                       <span className="postLikeCounter">{Posts.likes} people like it</span>
+                       <span className="postLikeCounter">{like} people like it</span>
                   
                     </div>
                     <div className="postBottomRight">
